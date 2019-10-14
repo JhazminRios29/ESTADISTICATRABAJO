@@ -1,0 +1,30 @@
+
+```{r}
+set.seed(111)
+library(rio)
+
+link1="https://github.com/JhazminRios29/clase1/raw/master/WJPROLI2019_0-24-31%20(1)-p%C3%A1ginas-4-5%2C7-convertido.xlsx"
+
+derecho=import(link1)
+```
+```{r}
+names(derecho)=gsub('\\s','',names(derecho))
+derecho[,]=lapply(derecho[,], trimws,whitespace = "[\\h\\v]")
+names(derecho)
+```
+```{r}
+# preparación
+derecho[,-c(1)]=lapply(derecho[,-c(1)], as.numeric) # a numerico
+```
+```{r}
+names(derecho)
+```
+
+```{r}
+row.names(derecho)=derecho$"Country/Jurisdiction"
+```
+```{r}
+# veamos que tenemos:
+str(derecho)
+```
+
